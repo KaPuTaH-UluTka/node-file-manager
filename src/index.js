@@ -1,9 +1,15 @@
 import {createInterface} from 'node:readline';
 import EventEmitter from 'node:events';
 import lineHandler from "./handlers/lineHandler.js";
-import cdHandle from "./handlers/dirHandlers/cd";
-import lsHandle from "./handlers/dirHandlers/ls";
-import upHandle from "./handlers/dirHandlers/up";
+import cdHandle from "./handlers/dirHandlers/cd.js";
+import lsHandle from "./handlers/dirHandlers/ls.js";
+import upHandle from "./handlers/dirHandlers/up.js";
+import catHandle from "./handlers/fsHandlers/cat.js";
+import addHandle from "./handlers/fsHandlers/add.js";
+import rnHandle from "./handlers/fsHandlers/rn.js";
+import cpHandle from "./handlers/fsHandlers/cp.js";
+import mvHandle from "./handlers/fsHandlers/mv.js";
+import rmHandle from "./handlers/fsHandlers/rm.js";
 
 const args = process.argv.slice(2).join('');
 const userName = args.slice(args.indexOf('=') + 1);
@@ -14,6 +20,12 @@ eventEmitter
     .on('up', upHandle)
     .on('cd', cdHandle)
     .on('ls', lsHandle)
+    .on('cat', catHandle)
+    .on('add', addHandle)
+    .on('rn', rnHandle)
+    .on('cp', cpHandle)
+    .on('mv', mvHandle)
+    .on('rm', rmHandle)
 
 const rl = createInterface({
     input: process.stdin,
