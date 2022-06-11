@@ -10,6 +10,8 @@ import rnHandle from "./handlers/fsHandlers/rn.js";
 import cpHandle from "./handlers/fsHandlers/cp.js";
 import mvHandle from "./handlers/fsHandlers/mv.js";
 import rmHandle from "./handlers/fsHandlers/rm.js";
+import osHandle from "./handlers/osHandlers/os.js";
+import hashHandle from "./handlers/hashHandlers/hash.js";
 
 const args = process.argv.slice(2).join('');
 const userName = args.slice(args.indexOf('=') + 1);
@@ -26,6 +28,8 @@ eventEmitter
     .on('cp', cpHandle)
     .on('mv', mvHandle)
     .on('rm', rmHandle)
+    .on('os', osHandle)
+    .on('hash', hashHandle)
 
 const rl = createInterface({
     input: process.stdin,
