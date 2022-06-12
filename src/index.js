@@ -12,12 +12,14 @@ import mvHandle from "./handlers/fsHandlers/mv.js";
 import rmHandle from "./handlers/fsHandlers/rm.js";
 import osHandle from "./handlers/osHandlers/os.js";
 import hashHandle from "./handlers/hashHandlers/hash.js";
-import compressHandle from "./handlers/zipHandlers/compress";
-import decompressHandle from "./handlers/zipHandlers/decompress";
+import compressHandle from "./handlers/zipHandlers/compress.js";
+import decompressHandle from "./handlers/zipHandlers/decompress.js";
+import showCurrDir from './helpers/showCurrDir.js'
 
 const args = process.argv.slice(2).join('');
 const userName = args.slice(args.indexOf('=') + 1);
 console.log('Welcome to the File Manager, ' + userName);
+showCurrDir();
 
 const eventEmitter = new EventEmitter();
 eventEmitter
