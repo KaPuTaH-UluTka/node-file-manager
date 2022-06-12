@@ -3,8 +3,6 @@ import showCurrDir from '../../helpers/showCurrDir.js'
 
 export default async function osHandle([param]) {
     try {
-        if (!param) throw Error('parameter is not defined');
-
         const { username, homedir } = userInfo();
         const cpusInfo = cpus().map(({ model, speed }) => {
             speed = speed / 1000 + 'GHz';
@@ -17,11 +15,8 @@ export default async function osHandle([param]) {
             '--username': username,
             '--architecture': process.arch,
         }
-
-        if (!osInfo[param]) throw Error(`no such parameter`);
-
         console.table(osInfo[param]);
-        showCurrDir()
+        showCurrDir();
     } catch (error) {
         console.error('Operation failed');
     }
