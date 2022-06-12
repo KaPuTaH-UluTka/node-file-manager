@@ -1,8 +1,9 @@
 export default function lineHandler(eventEmitter, line) {
     try {
+        line = line.trim();
         let [command, ...args] = line.split(' ');
 
-        if (/"|'/g.test(args)) {
+        if (args.find(arg => arg.includes('"') || arg.includes("'"))) {
             args = args
                 .join(' ')
                 .split(/["'] | ["']/)
