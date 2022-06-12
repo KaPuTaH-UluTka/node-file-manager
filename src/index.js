@@ -1,4 +1,5 @@
-import {createInterface} from 'node:readline';
+import {createInterface} from 'node:readline'
+import { homedir } from 'node:os'
 import EventEmitter from 'node:events';
 import lineHandler from "./handlers/lineHandler.js";
 import cdHandle from "./handlers/dirHandlers/cd.js";
@@ -15,6 +16,8 @@ import hashHandle from "./handlers/hashHandlers/hash.js";
 import compressHandle from "./handlers/zipHandlers/compress.js";
 import decompressHandle from "./handlers/zipHandlers/decompress.js";
 import showCurrDir from './helpers/showCurrDir.js'
+
+process.chdir(homedir());
 
 const args = process.argv.slice(2).join('');
 const userName = args.slice(args.indexOf('=') + 1);
