@@ -25,6 +25,7 @@ console.log('Welcome to the File Manager, ' + userName);
 showCurrDir();
 
 const eventEmitter = new EventEmitter();
+eventEmitter.setMaxListeners(0);
 eventEmitter
     .on('up', upHandle)
     .on('cd', cdHandle)

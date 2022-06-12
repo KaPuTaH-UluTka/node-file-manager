@@ -1,9 +1,23 @@
 export default function lineHandler(eventEmitter, line) {
     try {
-        const [command, ...args] = line.split(' ');
-        const events = ['up', 'cd', 'ls', 'cat', 'add', 'rn', 'cp', 'mv', 'rm', 'os', 'hash', 'compress', 'decompress'];
-        if (events.includes(command)) {
+        let [command, ...args] = line.split(' ');
+
+        if (/"|'/g.test(args)) {
+            args = args
+                .join(' ')
+                .split(/["'] | ["']/)
+                .map((arg) => arg.replace(/"|'/g, ''));
+        }
+
+        const twoArgEvents = ['rn', 'cp', 'mv', 'compress', 'decompress'];
+        const oneArgEvents = ['cd', 'cat', 'add', 'rm', 'os', 'hash'];
+        const zeroArgEvents = ['up', 'ls'];
+        if (twoArgEvents.includes(command) && args.length === 2) {
             eventEmitter.emit(command, args);
+        } else if (oneArgEvents.includes(command) && args.length === 1) {
+                eventEmitter.emit(command, args);
+        } else if (zeroArgEvents.includes(command)) {
+            eventEmitter.emit(command);
         } else if (command === '.exit') {
             this.close();
         } else {
