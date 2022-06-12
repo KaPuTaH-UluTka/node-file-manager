@@ -12,6 +12,8 @@ import mvHandle from "./handlers/fsHandlers/mv.js";
 import rmHandle from "./handlers/fsHandlers/rm.js";
 import osHandle from "./handlers/osHandlers/os.js";
 import hashHandle from "./handlers/hashHandlers/hash.js";
+import compressHandle from "./handlers/zipHandlers/compress";
+import decompressHandle from "./handlers/zipHandlers/decompress";
 
 const args = process.argv.slice(2).join('');
 const userName = args.slice(args.indexOf('=') + 1);
@@ -30,6 +32,8 @@ eventEmitter
     .on('rm', rmHandle)
     .on('os', osHandle)
     .on('hash', hashHandle)
+    .on('compress', compressHandle)
+    .on('decompress', decompressHandle)
 
 const rl = createInterface({
     input: process.stdin,
